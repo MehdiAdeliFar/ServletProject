@@ -58,17 +58,7 @@ public class Login extends HttpServlet {
 		String footer = "</body></html>";	
 		String htmlTags = docType + header + bodeyTags + footer;
 		
-		String adminUserName = "admin@isp.net";
-		String adminPassword = "P@ssword1";	
-		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");		
-			
-		if(helper.Helper.isEmty(username) && helper.Helper.isEmty(password)) {
-			if(username.equals(adminUserName) && password.equals(adminPassword)) {
-			response.sendRedirect("index.html");
-			}
-		}
+
 			pw.println(htmlTags);
 			
 		
@@ -76,7 +66,24 @@ public class Login extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String adminUserName = "admin@isp.net";
+		String adminPassword = "P@ssword1";
+
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		boolean verify =helper.Helper.verify(gRecaptchaResponse);
+		PrintWriter out = response.getWriter();
+//		if (verify) {
+//			out.println("<font color=red>Either user name or password is wrong.</font>");
+//		} else {
+//			out.println("<font color=red>You missed the Captcha.</font>");
+//		}
+		if(helper.Helper.isEmty(username) && helper.Helper.isEmty(password)) {
+			if(username.equals(adminUserName) && password.equals(adminPassword)) {
+				response.sendRedirect("index.html");
+			}
+		}
 	}
 
 }
