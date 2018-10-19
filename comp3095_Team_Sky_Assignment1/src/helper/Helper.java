@@ -156,10 +156,14 @@ public class Helper {
 		
 	}
 	
-	public boolean validatePassword(final String hex) {
-		matcher = passwordPattern.matcher(hex);
-		return matcher.matches();
-	}
+	 public String validatePassword(final String hex) {
+	        String errorStr = "";
+	        if (hex.length() < 6 || hex.length() > 12) errorStr += "The password must between 6-12 characters!<br/>";
+	        matcher=passwordPattern.matcher(hex);
+	        if (!matcher.matches())
+	            errorStr+="Password must have at least 1 special character and 1 uppercase character!<br/>";
+	        return errorStr;
+	    }
 	
 	  public static boolean isNotEmty(String str) {
 	        if (str == "" || str == null) {

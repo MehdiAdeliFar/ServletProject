@@ -57,13 +57,13 @@
 
 <div class="header">
     <ul>
-        <li><a href="/dashboard?page=tab1">Tab1</a></li>
-        <li><a href="/dashboard?page=tab2"> Tab2</a></li>
-        <li><a href="/dashboard?page=tab3"> Tab3</a></li>
-        <li><a href="/dashboard?page=tab4">Tab4</a></li>
+        <li><a href="dashboard?page=tab1">Tab1</a></li>
+        <li><a href="dashboard?page=tab2"> Tab2</a></li>
+        <li><a href="dashboard?page=tab3"> Tab3</a></li>
+        <li><a href="dashboard?page=tab4">Tab4</a></li>
     </ul>
     <div class="welcome">
-        Welcome <%=session.getAttribute("firstname")+" "+session.getAttribute("lastname")%><a href="/Login?logout=true">LOGOUT</a>
+        Welcome <%=session.getAttribute("firstname")+" "+session.getAttribute("lastname")%><a href="Login?logout=true">LOGOUT</a>
     </div>
 
 </div>
