@@ -31,7 +31,7 @@
 					<label for="password">Password:</label> <input type="password"
 						name="password">
 				</div>
-				<div class= "g-recaptcha" data-sitekey="6LdUknMUAAAAAMbLTVnxfmyvpVnr-sAcWQ5UIN8P"></div>
+				<div class= "g-recaptcha" data-sitekey="6LeAhHMUAAAAANVM4Te-E_-Ol8ATN7NTXb_CqN0K"></div>
 
 				<br>
 				<div>

@@ -72,7 +72,7 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		boolean verify =helper.Helper.verify(gRecaptchaResponse);
+		boolean verify =helper.Helper.verifyRecaptcha(gRecaptchaResponse);
 		PrintWriter out = response.getWriter();
 //		if (verify) {
 //			out.println("<font color=red>Either user name or password is wrong.</font>");
