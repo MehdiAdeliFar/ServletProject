@@ -14,9 +14,14 @@ package helper;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URL;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +31,9 @@ public class Helper {
 	private Pattern passwordPattern;
 	private Pattern characters;
 	private Matcher matcher;
+	
+	 final static String emailUsername = "";
+	    final static String emailPassword = "";
 	
 	
 	private static final String EMAIL_PATTERN = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
@@ -43,6 +51,46 @@ public class Helper {
 		characters = Pattern.compile(CHARACTER_PATTERN);
 		passwordPattern = Pattern.compile(PASSWORD_PATTERN);
 	}
+	 public static String getBaseUrl(HttpServletRequest request) {
+	        String scheme = request.getScheme() + "://";
+	        String serverName = request.getServerName();
+	        String serverPort = (request.getServerPort() == 80) ? "" : ":" + request.getServerPort();
+	        String contextPath = request.getContextPath();
+	        return scheme + serverName + serverPort + contextPath;
+	    }
+	    public static boolean sendEmail(String receiverEmail, String subject, String messageContent){
+	        Properties props = new Properties();
+	        props.put("mail.smtp.starttls.enable", "true");
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.host", "smtp.gmail.com");
+	        props.put("mail.smtp.port", "587");
+
+	        Session session = Session.getInstance(props,
+	                new javax.mail.Authenticator() {
+	                    protected PasswordAuthentication getPasswordAuthentication() {
+	                        return new PasswordAuthentication(emailUsername, emailPassword);
+	                    }
+	                });
+
+	        try {
+
+	            Message message = new MimeMessage(session);
+	            message.setFrom(new InternetAddress(emailUsername));
+	            message.setRecipients(Message.RecipientType.TO,
+	                    InternetAddress.parse(receiverEmail));
+	            message.setSubject(subject);
+	            message.setText(messageContent);
+
+	            Transport.send(message);
+
+	            return true;
+
+	        } catch (MessagingException e) {
+	            System.err.println(e.getMessage());
+	        }
+	        return false;
+
+	    }
 	 public static boolean verifyRecaptcha(String gRecaptchaResponse) throws IOException {
 	        if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
 	            return false;
