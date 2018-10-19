@@ -30,7 +30,7 @@ public class Helper {
 	
 	private static final String EMAIL_PATTERN = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
 	private static final String CHARACTER_PATTERN = "^[a-zA-Z]+$";
-	private static final String PASSWORD_PATTERN = "";
+	private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%]).{6,12})";
 
 	public static final String url = "https://www.google.com/recaptcha/api/siteverify";
 	public static final String secret = "6LdMAgMTAAAAAJOAqKgjWe9DUujd2iyTmzjXilM7";
