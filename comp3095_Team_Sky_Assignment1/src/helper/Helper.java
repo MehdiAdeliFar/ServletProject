@@ -113,12 +113,12 @@ public class Helper {
 		return matcher.matches();
 	}
 	
-	public static boolean isEmty(String str) {
-		if (str == "" || str == null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
+	  public static boolean isNotEmty(String str) {
+	        if (str == "" || str == null) {
+	            return false;
+	        } else {
+	            return true;
+	        }
+	    }
 
 }
